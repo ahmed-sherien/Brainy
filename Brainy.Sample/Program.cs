@@ -6,7 +6,24 @@ namespace Brainy.Sample
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var brainBuilder = BrainBuilder.CreateBrain();
+            brainBuilder.AddSensor<ConsoleSensor>();
+            brainBuilder.AddPresenter<ConsolePresenter>();
+            brainBuilder.AddSkill<GreetingSkill>();
+            var brain = brainBuilder.Build();
+
+            Console.WriteLine("Welcome to Brainy!");
+            Console.WriteLine("==================");
+            var exit = false;
+            brain.Stopped += (sender, e) => exit = true;
+            while (!exit)
+            {
+                Console.WriteLine("Hi, please give me an order:");
+                Console.WriteLine("note: <order> [<parameter>]* [-<option> <option_parameter>]*");
+                brain.Run();
+            }
+            Console.WriteLine("Press <Enter> to exit.");
+            Console.ReadLine();
         }
     }
 }
