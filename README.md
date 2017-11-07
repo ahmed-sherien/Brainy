@@ -64,24 +64,6 @@ public class TextResult : IBrainResult
 }
 ```
 
-###### Build your Result
-``` csharp
-public class TextResult : IBrainResult
-{
-    private string _text;
-
-    public TextResult(string text)
-    {
-        this._text = text;
-    }
-
-    public override string ToString()
-    {
-        return _text;
-    }
-}
-```
-
 ###### Build your Skill
 ``` csharp
 public class GreetingSkill : IBrainSkill
