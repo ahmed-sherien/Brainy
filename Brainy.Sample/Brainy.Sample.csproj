@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Brainy.PersonalAssistant\Brainy.PersonalAssistant.csproj" />
     <ProjectReference Include="..\Brainy\Brainy.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Brainy.PersonalAssistant;
+using System;
 
 namespace Brainy.Sample
 {
@@ -10,6 +11,7 @@ namespace Brainy.Sample
             brainBuilder.AddSensor<ConsoleSensor>();
             brainBuilder.AddPresenter<ConsolePresenter>();
             brainBuilder.AddSkill<GreetingSkill>();
+            brainBuilder.AddSkill<PersonalAssistantSkill>();
             var brain = brainBuilder.Build();
 
             Console.WriteLine("Welcome to Brainy!");

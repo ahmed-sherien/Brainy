@@ -1,10 +1,9 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
-namespace Brainy
+namespace Brainy.Core
 {
     [Serializable]
-    internal class BrainException : Exception
+    public class BrainException : Exception
     {
         public BrainException() : base($"Brainy: Unknown Error!")
         {
