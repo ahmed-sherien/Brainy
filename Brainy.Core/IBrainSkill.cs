@@ -8,5 +8,6 @@ namespace Brainy.Core
         IBrainResult Process(IBrainOrder order);
         void AssignOrders(Action<string> assign);
         HelpResult HelpMe();
+        HelpResult HelpMe(string order);
     }
 }

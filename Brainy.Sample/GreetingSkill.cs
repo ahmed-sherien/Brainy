@@ -3,11 +3,21 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Brainy.Core.Help;
+using System.Linq;
 
 namespace Brainy.Sample
 {
     public class GreetingSkill : IBrainSkill
     {
+        private OrdersCollection _orders;
+        public GreetingSkill()
+        {
+            _orders = new OrdersCollection
+            {
+                { "hi", "Brainy 'hi's you back" },
+                { "hey", "Brainy 'hey's you back" }
+            };
+        }
         public void AssignOrders(Action<string> assign)
         {
             assign("hi");
@@ -16,10 +26,12 @@ namespace Brainy.Sample
 
         public HelpResult HelpMe()
         {
-            var orders = new OrdersCollection()
-                .Add("hi", "Brainy 'hi's you back")
-                .Add("hey", "Brainy 'hey's you back");
-            return new HelpResult(orders);
+            return new HelpResult(_orders);
+        }
+
+        public HelpResult HelpMe(string order)
+        {
+            return new HelpResult(new OrdersCollection(_orders.Where(o => o.Key.Contains(order))));
         }
 
         public IBrainResult Process(IBrainOrder order)

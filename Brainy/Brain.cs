@@ -27,6 +27,12 @@ namespace Brainy
             SkillSelector = new SkillSelector();
             SkillSelector.AssignSkill("stop", stopping);
             SkillSelector.AssignSkill("helpme", helpme);
+            helpme.AddSkillHelp("helpme", helpme);
+            helpme.AddSkillHelp("stop", stopping);
+        }
+        internal void AddSkillsHelp(string order, IBrainSkill skill)
+        {
+            helpme.AddSkillHelp(order, skill);
         }
         public void Run()
         {

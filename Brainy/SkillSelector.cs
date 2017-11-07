@@ -19,7 +19,7 @@ namespace Brainy
         public IBrainSkill SelectSkill(List<IBrainSkill> skills, IBrainOrder order)
         {
             var key = order.Order;
-            if (!skillsDictionary.ContainsKey(key)) throw new BrainException($"I don't know how to \"{key}\"");
+            if (!skillsDictionary.ContainsKey(key)) throw new BrainException($"I don't know how to \"{key}\"!");
             return skillsDictionary[key];
         }
     }

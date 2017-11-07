@@ -12,7 +12,7 @@ namespace Brainy.Sample
             brainBuilder.AddPresenter<ConsolePresenter>();
             brainBuilder.AddSkill<GreetingSkill>();
             brainBuilder.AddSkill<PersonalAssistantSkill>();
-            var brain = brainBuilder.Build();
+            Brain brain = brainBuilder.Build() as Brain;
 
             Console.WriteLine("Welcome to Brainy!");
             Console.WriteLine("==================");

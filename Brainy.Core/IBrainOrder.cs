@@ -5,7 +5,7 @@ namespace Brainy.Core
     public interface IBrainOrder
     {
         string Order { get; }
-        List<string> Parameters { get; }
+        List<object> Parameters { get; }
         Dictionary<string, object> Options { get; }
     }
 }

@@ -47,6 +47,7 @@ namespace Brainy
             skill.AssignOrders(order =>
             {
                 brain.SkillSelector.AssignSkill(order, skill);
+                ((Brain)brain).AddSkillsHelp(order, skill);
             });
             return this;
         }
