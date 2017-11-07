@@ -8,6 +8,7 @@ namespace Brainy.Sample
     {
         public IBrainOrder Sense()
         {
+            Console.Write("You: ");
             var text = Console.ReadLine();
             var splitOptions = text.Split('-');
             var splitParamters = splitOptions[0].Split(' ');

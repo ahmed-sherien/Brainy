@@ -1,4 +1,5 @@
 ﻿using Brainy.Core;
+using Brainy.Core.Help;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace Brainy
     public class Brain : IBrain
     {
         private bool _exit = false;
+        private HelpMeSkill helpme;
+
         public event EventHandler Stopped;
 
         public List<IBrainSkill> Skills { get; private set; }
@@ -16,14 +19,21 @@ namespace Brainy
         public ISkillSelector SkillSelector { get; private set; }
         public Brain()
         {
-            Skills = new List<IBrainSkill>();
+            var stopping = new StoppingSkill();
+            helpme = new HelpMeSkill(this);
+            Skills = new List<IBrainSkill> { stopping, helpme };
             Sensors = new List<IBrainSensor>();
             Presenters = new List<IBrainPresenter>();
             SkillSelector = new SkillSelector();
-            SkillSelector.AssignSkill("stop", new StoppingSkill());
+            SkillSelector.AssignSkill("stop", stopping);
+            SkillSelector.AssignSkill("helpme", helpme);
         }
         public void Run()
         {
+            Parallel.ForEach(Presenters, presenter =>
+            {
+                presenter.Present(helpme.HelpMe());
+            });
             while (!_exit)
             {
                 try

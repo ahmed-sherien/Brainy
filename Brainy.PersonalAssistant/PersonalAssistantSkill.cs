@@ -1,6 +1,7 @@
 ﻿using Brainy.Core;
 using System;
 using System.Linq;
+using Brainy.Core.Help;
 
 namespace Brainy.PersonalAssistant
 {
@@ -9,12 +10,22 @@ namespace Brainy.PersonalAssistant
         public void AssignOrders(Action<string> assign)
         {
             assign("introduce");
+            assign("iam");
+        }
+
+        public HelpResult HelpMe()
+        {
+            var orders = new OrdersCollection()
+                .Add("iam <name>", "introduces your name.")
+                .Add("introduce <name>", "introduces friend's name.");
+            return new HelpResult(orders);
         }
 
         public IBrainResult Process(IBrainOrder order)
         {
             switch (order.Order)
             {
+                case "iam":
                 case "introduce":
                     if (order.Parameters.Any())
                     {

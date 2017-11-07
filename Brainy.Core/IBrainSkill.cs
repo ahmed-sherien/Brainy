@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Brainy.Core.Help;
+using System;
 
 namespace Brainy.Core
 {
@@ -8,5 +7,6 @@ namespace Brainy.Core
     {
         IBrainResult Process(IBrainOrder order);
         void AssignOrders(Action<string> assign);
+        HelpResult HelpMe();
     }
 }
